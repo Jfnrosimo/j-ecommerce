@@ -10,11 +10,12 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div>
-      <div>
-        <div>
+    <div className="h-auto">
+      <div className="flex justify-between items-center px-5 py-3">
+        <div className="flex gap-3">
           <div>
-            <img src="/img/en.png" alt="language" /> <KeyboardArrowDownIcon />
+            <img className="inline-block" src="/img/en.png" alt="language" />
+            <KeyboardArrowDownIcon />
           </div>
           <div>
             <span>USD</span>
@@ -30,10 +31,10 @@ const Navbar = () => {
             <Link to="/products/3">Children</Link>
           </div>
         </div>
-        <div>
+        <div className="text-4xl">
           <Link to="/">JEcom</Link>
         </div>
-        <div>
+        <div className="flex items-center gap-5">
           <div>
             <Link to="/">Home</Link>
           </div>
@@ -46,13 +47,15 @@ const Navbar = () => {
           <div>
             <Link to="/">Stores</Link>
           </div>
-          <div>
+          <div className="flex gap-2 items-center">
             <SearchIcon />
             <PersonOutlineOutlinedIcon />
             <FavoriteBorderOutlinedIcon />
-            <div>
+            <div className="relative text-center">
               <ShoppingCartOutlinedIcon />
-              <span>0</span>
+              <span className="absolute -top-3 -right-3 w-6 h-6 bg-blue-600 rounded-full text-zinc-100 text-sm font-semibold">
+                0
+              </span>
             </div>
           </div>
         </div>
