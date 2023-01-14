@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="h-auto">
-      <div className="flex justify-between items-center px-5 py-3">
+      <div className="flex justify-between items-center px-5 py-2">
         <div className="flex gap-3">
           <div>
             <img className="inline-block" src="/img/en.png" alt="language" />
