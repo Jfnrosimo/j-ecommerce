@@ -13,7 +13,7 @@ const Categories = () => {
             />
             <Link
               className="absolute px-2 bg-slate-100 rounded-sm hover:bg-blue-500 hover:text-slate-100"
-              to=""
+              to="/products/1"
             >
               WOMEN
             </Link>
@@ -26,7 +26,7 @@ const Categories = () => {
             />
             <Link
               className="absolute px-2 bg-slate-100 rounded-sm hover:bg-blue-500 hover:text-slate-100"
-              to=""
+              to="/products/1"
             >
               SALE
             </Link>
@@ -40,7 +40,7 @@ const Categories = () => {
           />
           <Link
             className="absolute px-2 bg-slate-100 rounded-sm hover:bg-blue-500 hover:text-slate-100"
-            to="/"
+            to="/products/1/"
           >
             NEW SEASON
           </Link>
@@ -54,7 +54,10 @@ const Categories = () => {
               src="https://images.pexels.com/photos/716411/pexels-photo-716411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               alt=""
             />
-            <Link className="absolute px-2 bg-slate-100 rounded-sm hover:bg-blue-500 hover:text-slate-100">
+            <Link
+              className="absolute px-2 bg-slate-100 rounded-sm hover:bg-blue-500 hover:text-slate-100"
+              to="/products/1"
+            >
               MEN
             </Link>
           </div>
@@ -64,7 +67,10 @@ const Categories = () => {
               src="https://images.pexels.com/photos/935985/pexels-photo-935985.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               alt=""
             />
-            <Link className="absolute px-2 bg-slate-100 rounded-sm hover:bg-blue-500 hover:text-slate-100">
+            <Link
+              className="absolute px-2 bg-slate-100 rounded-sm hover:bg-blue-500 hover:text-slate-100"
+              to="/products/1"
+            >
               ACCESSORIES
             </Link>
           </div>
@@ -75,8 +81,11 @@ const Categories = () => {
             src="https://images.pexels.com/photos/2048548/pexels-photo-2048548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt="shoes"
           />
-          <Link className="absolute px-2 bg-slate-100 rounded-sm hover:bg-blue-500 hover:text-slate-100">
-            Shoes
+          <Link
+            className="absolute px-2 bg-slate-100 rounded-sm hover:bg-blue-500 hover:text-slate-100"
+            to="/products/1"
+          >
+            SHOES
           </Link>
         </div>
       </div>
