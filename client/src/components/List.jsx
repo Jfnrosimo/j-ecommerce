@@ -6,7 +6,7 @@ import Card from "./Card";
 
 const List = () => {
   return (
-    <div>
+    <div className="flex justify-between gap-10 flex-wrap">
       {data?.map((item) => {
         return <Card key={item.id} item={item} />;
       })}

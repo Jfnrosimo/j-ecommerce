@@ -11,8 +11,8 @@ const Products = () => {
   const [sort, setSort] = useState(null);
 
   return (
-    <div className="px-10 pt-5 flex gap-4 w-full">
-      <div className=" w-1/5">
+    <div className="px-10 pt-5 flex gap-40 w-full h-[90vh] justify-center">
+      <div className=" w-1/5 sticky h-1/2 top-20">
         <div className="mb-5">
           <h2 className="text-2xl font-semibold">Product Categories</h2>
           <div>
@@ -67,8 +67,9 @@ const Products = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className=" h-[35%] w-full flex flex-col gap-10">
         <img
+          className="object-cover w-full h-full"
           src="https://images.pexels.com/photos/341392/pexels-photo-341392.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt="products background"
         />
