@@ -55,11 +55,12 @@ const Navbar = () => {
             <Link to="/">Stores</Link>
           </div>
           <div className="flex gap-2 items-center">
-            <SearchIcon />
-            <PersonOutlineOutlinedIcon />
-            <FavoriteBorderOutlinedIcon />
+            <SearchIcon className=" cursor-pointer" />
+            <PersonOutlineOutlinedIcon className=" cursor-pointer" />
+            <FavoriteBorderOutlinedIcon className=" cursor-pointer" />
             <div className="relative text-center">
               <ShoppingCartOutlinedIcon
+                className=" cursor-pointer"
                 onClick={() => setCartOpen(!cartOpen)}
               />
               <span className="absolute -top-3 -right-3 w-6 h-6 bg-blue-600 rounded-full text-zinc-100 text-sm font-semibold">

@@ -76,9 +76,15 @@ const Product = () => {
           </button>
         </div>
         <div className="mt-10">
-          <p>Vendor: Polo</p>
-          <p>Product Type: T-Shirt</p>
-          <p>Tag: T-shirt, Men</p>
+          <p>
+            Vendor: <span className="text-sm ">Polo</span>
+          </p>
+          <p>
+            Product Type: <span className="text-sm ">T-Shirt</span>
+          </p>
+          <p>
+            Tag: <span className="text-sm ">T-shirt, Men</span>
+          </p>
         </div>
         <div className=" h-0.5 bg-slate-400"></div>
         <div className="">
