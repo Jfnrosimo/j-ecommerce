@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 //Import UI
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchIcon from "@mui/icons-material/Search";
@@ -7,8 +9,10 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 //Import routing
 import { Link } from "react-router-dom";
+import Cart from "./Cart";
 
 const Navbar = () => {
+  const [cartOpen, setCartOpen] = useState(false);
   return (
     <div className="h-auto">
       <div className="flex justify-between items-center px-5 py-2">
@@ -55,7 +59,9 @@ const Navbar = () => {
             <PersonOutlineOutlinedIcon />
             <FavoriteBorderOutlinedIcon />
             <div className="relative text-center">
-              <ShoppingCartOutlinedIcon />
+              <ShoppingCartOutlinedIcon
+                onClick={() => setCartOpen(!cartOpen)}
+              />
               <span className="absolute -top-3 -right-3 w-6 h-6 bg-blue-600 rounded-full text-zinc-100 text-sm font-semibold">
                 0
               </span>
@@ -63,6 +69,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      {cartOpen && <Cart />}
     </div>
   );
 };
