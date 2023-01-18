@@ -19,7 +19,7 @@ const Products = () => {
   const handleCatChange = (e) => {
     const value = e.target.value;
     const isChecked = e.target.checked;
-    console.log(isChecked);
+
     setSelectedSubCat(
       isChecked
         ? [...selectedSubCat, value]
@@ -54,7 +54,7 @@ const Products = () => {
             <input
               type="range"
               min={0}
-              max={1000}
+              max={10000}
               onChange={(e) => setMaxPrice(e.target.value)}
             />
             <span className="mx-1">{maxPrice}</span>
@@ -92,7 +92,12 @@ const Products = () => {
           src="https://images.pexels.com/photos/341392/pexels-photo-341392.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt="products background"
         />
-        <List categoryId={categoryId} maxPrice={maxPrice} sort={sort} />
+        <List
+          categoryId={categoryId}
+          maxPrice={maxPrice}
+          sort={sort}
+          selectedSubCat={selectedSubCat}
+        />
       </div>
     </div>
   );
