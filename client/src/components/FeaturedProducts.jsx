@@ -5,23 +5,23 @@ import axios from "axios";
 import Card from "./Card";
 
 //Import data
-import data from "../Data";
+// import data from "../Data";
 
 const FeaturedProducts = ({ type }) => {
-  const [products, setProducts] = useState([]);
-
+  const [data, setData] = useState([]);
+  console.log(data);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          process.env.REACT_APP_API_URL + "/products",
+          process.env.REACT_APP_API_URL + "/products?populate=*",
           {
             headers: {
               Authorization: "Bearer " + process.env.REACT_APP_API_TOKEN,
             },
           }
         );
-        console.log(response.data);
+        setData(response.data.data);
       } catch (error) {
         console.log(error);
       }
