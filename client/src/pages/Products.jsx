@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 
 //Import components
 import List from "../components/List";
@@ -9,24 +10,42 @@ const Products = () => {
 
   const [maxPrice, setMaxPrice] = useState(1000);
   const [sort, setSort] = useState(null);
+  const [selectedSubCat, setSelectedSubCat] = useState([]);
+
+  const { data, loading, error } = useFetch(
+    `/sub-categories?[filters][categories][id][$eq]=${categoryId}`
+  );
+
+  const handleCatChange = (e) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    console.log(isChecked);
+    setSelectedSubCat(
+      isChecked
+        ? [...selectedSubCat, value]
+        : selectedSubCat.filter((item) => item !== value)
+    );
+  };
 
   return (
     <div className="px-10 pt-5 flex gap-40 w-full h-[90vh] justify-center">
       <div className=" w-1/5 sticky h-1/2 top-20">
         <div className="mb-5">
           <h2 className="text-2xl font-semibold">Product Categories</h2>
-          <div>
-            <input className="mx-1" type="checkbox" id="1" value={1} />
-            <label htmlFor="1">Shoes</label>
-          </div>
-          <div>
-            <input className="mx-1" type="checkbox" id="2" value={2} />
-            <label htmlFor="2">Skirts</label>
-          </div>
-          <div>
-            <input className="mx-1" type="checkbox" id="3" value={3} />
-            <label htmlFor="3">Coats</label>
-          </div>
+          {data?.map((item) => {
+            return (
+              <div key={item.id}>
+                <input
+                  className="mx-1"
+                  type="checkbox"
+                  id={item.id}
+                  value={item.id}
+                  onChange={handleCatChange}
+                />
+                <label htmlFor={item.id}>{item.attributes.title}</label>
+              </div>
+            );
+          })}
         </div>
         <div className="mb-5">
           <h2 className="text-2xl font-semibold">Filter by price</h2>
