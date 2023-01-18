@@ -1,33 +1,12 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import useFetch from "../hooks/useFetch";
 
 //Import component
 import Card from "./Card";
 
-//Import data
-// import data from "../Data";
-
 const FeaturedProducts = ({ type }) => {
-  const [data, setData] = useState([]);
-  console.log(data);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          process.env.REACT_APP_API_URL + "/products?populate=*",
-          {
-            headers: {
-              Authorization: "Bearer " + process.env.REACT_APP_API_TOKEN,
-            },
-          }
-        );
-        setData(response.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+  const { data, loading, error } = useFetch(
+    `/products?populate=*&/filters[type][$eql]=${type}`
+  );
 
   return (
     <div className="mx-32 my-16">
@@ -41,9 +20,9 @@ const FeaturedProducts = ({ type }) => {
         </p>
       </div>
       <div className="flex justify-center gap-10">
-        {data.map((item) => (
-          <Card key={item.id} item={item} />
-        ))}
+        {loading
+          ? "Loading..."
+          : data.map((item) => <Card key={item.id} item={item} />)}
       </div>
     </div>
   );
