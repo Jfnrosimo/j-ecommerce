@@ -5,7 +5,7 @@ import Card from "./Card";
 
 const FeaturedProducts = ({ type }) => {
   const { data, loading, error } = useFetch(
-    `/products?populate=*&/filters[type][$eql]=${type}`
+    `/products?populate=*&filters[type][$eq]=${type}`
   );
 
   return (
@@ -20,7 +20,9 @@ const FeaturedProducts = ({ type }) => {
         </p>
       </div>
       <div className="flex justify-center gap-10">
-        {loading
+        {error
+          ? "Something went wrong!"
+          : loading
           ? "Loading..."
           : data.map((item) => <Card key={item.id} item={item} />)}
       </div>
