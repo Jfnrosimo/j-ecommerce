@@ -13,10 +13,10 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
     const { products } = ctx.request.body;
 
     const lineItems = await Promise.all(
-      products.map(async (item) => {
+      products.map(async (currentItem) => {
         const item = await strapi
           .service("api:product.product")
-          .findOne(item.id);
+          .findOne(currentItem.id);
 
         return {
           price_data: {
