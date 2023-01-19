@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 //Import UI
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -13,6 +14,8 @@ import Cart from "./Cart";
 
 const Navbar = () => {
   const [cartOpen, setCartOpen] = useState(false);
+  const products = useSelector((state) => state.cart.products);
+
   return (
     <div className="h-auto">
       <div className="flex justify-between items-center px-5 py-2">
@@ -64,7 +67,7 @@ const Navbar = () => {
                 onClick={() => setCartOpen(!cartOpen)}
               />
               <span className="absolute -top-3 -right-3 w-6 h-6 bg-blue-600 rounded-full text-zinc-100 text-sm font-semibold">
-                0
+                {products.length}
               </span>
             </div>
           </div>
