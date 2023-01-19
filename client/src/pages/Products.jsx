@@ -8,14 +8,14 @@ import List from "../components/List";
 const Products = () => {
   const categoryId = parseInt(useParams().id);
 
-  const [maxPrice, setMaxPrice] = useState(1000);
+  const [maxPrice, setMaxPrice] = useState(10000);
   const [sort, setSort] = useState(null);
   const [selectedSubCat, setSelectedSubCat] = useState([]);
 
   const { data, loading, error } = useFetch(
     `/sub-categories?[filters][categories][id][$eq]=${categoryId}`
   );
-
+  console.log(data);
   const handleCatChange = (e) => {
     const value = e.target.value;
     const isChecked = e.target.checked;
