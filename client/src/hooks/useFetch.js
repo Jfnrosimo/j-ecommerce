@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { makeRequest } from "../makeRequest";
 
 const useFetch = (url) => {
@@ -14,7 +13,7 @@ const useFetch = (url) => {
         const response = await makeRequest.get(url);
         setData(response.data.data);
       } catch (error) {
-        console.log(error);
+        setError(error);
       }
       setLoading(false);
     };
