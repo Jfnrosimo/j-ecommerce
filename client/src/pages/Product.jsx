@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
+//Redux
+import { useDispatch } from "react-redux";
+import { addToCart } from "../features/cartSlice";
+
 //Import UI
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import BalanceIcon from "@mui/icons-material/Balance";
@@ -11,6 +15,7 @@ const Product = () => {
   const id = useParams().id;
   const [selectedImage, setSelectedImage] = useState("img");
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
   console.log(data);
@@ -54,14 +59,11 @@ const Product = () => {
           </div>
 
           <div className="w-1/2 flex flex-col gap-4">
-            <h2 className="text-2xl font-semibold">Title</h2>
+            <h2 className="text-2xl font-semibold">
+              {data?.attributes?.title}
+            </h2>
             <span className="text-lg text-blue-500">₱300</span>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero,
-              voluptas! Consequatur, cupiditate itaque doloremque reiciendis
-              earum neque ea illo quam molestiae aliquam, suscipit omnis nihil
-              vitae inventore eum molestias error.
-            </p>
+            <p>{data?.attributes?.desc}</p>
             <div className="flex items-center">
               <button
                 className="w-10 h-10 bg-gray-200"
@@ -79,7 +81,21 @@ const Product = () => {
                 +
               </button>
             </div>
-            <button className=" w-56 flex gap-2 justify-center text-sm py-1 bg-blue-500 text-zinc-200">
+            <button
+              className=" w-56 flex gap-2 justify-center text-sm py-1 bg-blue-500 text-zinc-200"
+              onClick={() =>
+                dispatch(
+                  addToCart({
+                    id: data.id,
+                    title: data.attributes.title,
+                    desc: data.attributes.desc,
+                    price: data.attributes.price,
+                    img: data.attributes.img.data.attributes.url,
+                    quantity,
+                  })
+                )
+              }
+            >
               <AddShoppingCartIcon />
               ADD TO CART
             </button>
