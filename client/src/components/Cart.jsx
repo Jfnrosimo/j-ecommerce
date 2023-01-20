@@ -3,6 +3,9 @@ import { useSelector } from "react-redux";
 import { removeItem, resetCart } from "../features/cartSlice";
 import { useDispatch } from "react-redux";
 
+import { loadStripe } from "@stripe/stripe-js";
+import { makeRequest } from "../makeRequest";
+
 //Import UI
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
@@ -16,6 +19,25 @@ const Cart = () => {
       0
     );
     return total.toFixed(2);
+  };
+
+  const stripePromise = loadStripe(
+    "pk_test_51MRreeCXI7FS4MjAGOpcTHXadTHmzZRuVFpeJEvUuLxYrithSnjmUa4b9oDJsmXPdzbSM2WKTs7fuXUkPKDWGl8J00FOPfEF8N"
+  );
+  const handlePayment = async () => {
+    try {
+      const stripe = await stripePromise;
+
+      const res = await makeRequest.post("/orders", {
+        products,
+      });
+
+      await stripe.redirectToCheckout({
+        sessionId: res.data.stripeSession.id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -47,7 +69,10 @@ const Cart = () => {
         <span>SUBTOTAL</span>
         <span>₱{totalPrice()}</span>
       </div>
-      <button className="w-56 flex gap-2 justify-center self-center text-sm py-1 bg-blue-500 text-zinc-200">
+      <button
+        className="w-56 flex gap-2 justify-center self-center text-sm py-1 bg-blue-500 text-zinc-200"
+        onClick={handlePayment}
+      >
         PROCEED TO CHECKOUT
       </button>
       <button
